@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import * as React from 'react';
+import Homepage from './Components/Homepage/Homepage';
+import ButtonAppBar from './Components/Layouts/Header';
+import ProjectShowcase from './Components/Showcase/ProjectShowcase';
+import palette from './Themes/default_palette.json';
 
-function App() {
+function App(): JSX.Element {
+  const theme = createMuiTheme(palette);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <React.Fragment>
+        <CssBaseline />
+        <ButtonAppBar />
+        <Homepage />
+        <ProjectShowcase />
+      </React.Fragment>
+    </MuiThemeProvider>
   );
 }
-
 export default App;
