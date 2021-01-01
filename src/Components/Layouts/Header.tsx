@@ -52,6 +52,8 @@ export default function ButtonAppBar(): JSX.Element {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
+              href={'https://github.com/slytherindor'}
+              target={'_blank'}
             >
               <GitHubIcon />
             </IconButton>
@@ -60,6 +62,8 @@ export default function ButtonAppBar(): JSX.Element {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
+              href={'https://linkedin.com/in/shubhaarsay'}
+              target={'_blank'}
             >
               <LinkedInIcon />
             </IconButton>
