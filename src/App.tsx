@@ -1,13 +1,11 @@
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {createMuiTheme, CssBaseline, MuiThemeProvider} from '@material-ui/core';
 import * as React from 'react';
 import Homepage from './Components/Homepage/Homepage';
 import ButtonAppBar from './Components/Layouts/Header';
 import ProjectShowcase from './Components/Showcase/ProjectShowcase';
 import palette from './Themes/default_palette.json';
-
+export const theme = createMuiTheme(palette);
 function App(): JSX.Element {
-  const theme = createMuiTheme(palette);
   return (
     <MuiThemeProvider theme={theme}>
       <React.Fragment>
