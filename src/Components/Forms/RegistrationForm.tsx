@@ -31,17 +31,15 @@ export default function RegistrationForm() {
     e.preventDefault();
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        // eslint-disable-next-line
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
+      /*
+       * Use URLSearchParams inline form data to server
+       * */
+      body: new URLSearchParams({
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: password,
         confirmPassword: confirmPassword,
-        firstName: firstName,
-        lastName: lastName,
       }),
     };
     fetch('/signup', options)

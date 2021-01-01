@@ -28,15 +28,7 @@ export default function LoginForm() {
     e.preventDefault();
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        // eslint-disable-next-line
-          'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
+      body: new URLSearchParams({email: email, password: password}),
     };
     fetch('/login', options)
       .then(response => {
