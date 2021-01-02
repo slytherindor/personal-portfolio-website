@@ -5,9 +5,9 @@ import * as React from 'react';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      padding: theme.spacing(20),
-      marginTop: theme.spacing(10),
-      marginBottom: theme.spacing(10),
+      padding: theme.spacing(15),
+      marginTop: theme.spacing(5),
+      marginBottom: theme.spacing(5),
     },
     bigHeading: {
       fontWeight: theme.typography.fontWeightMedium,
@@ -23,7 +23,7 @@ export default function Homepage(): JSX.Element {
   const classes = useStyles();
   return (
     <Container maxWidth={'md'}>
-      <Grid className={classes.paper} md>
+      <Grid className={classes.paper}>
         <Typography className={classes.bigHeading} variant={'h2'}>
           Welcome to Fiddl
         </Typography>

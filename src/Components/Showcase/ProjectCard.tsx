@@ -1,54 +1,54 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  createStyles,
-  IconButton,
-  makeStyles,
-} from '@material-ui/core';
+import {Button, Card, CardActions} from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import CodeIcon from '@material-ui/icons/Code';
 import * as React from 'react';
 
 export interface ProjectInterface {
-  title: string;
+  name: string;
   description: string;
-  codeUrl: string;
+  repoUrl: string;
+  language: string;
 }
-const useStyles = makeStyles(theme =>
-  createStyles({
-    menuButton: {
-      marginRight: theme.spacing(2),
-      color: theme.palette.primary.contrastText,
-    },
-  })
-);
+// const useStyles = makeStyles(theme =>
+//   createStyles({
+//     menuButton: {
+//       marginRight: theme.spacing(2),
+//       color: theme.palette.primary.contrastText,
+//     },
+//   })
+// );
 
 export default function ProjectCard(props: ProjectInterface): JSX.Element {
-  const classes = useStyles();
   return (
     <Card variant={'outlined'}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          {props.title}
+          {props.name}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          gutterBottom
+          variant="body1"
+          color="textSecondary"
+          component="p"
+        >
           {props.description}
+        </Typography>
+        <Typography variant="subtitle1" color="textSecondary" component="p">
+          Language: {props.language}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small" color="secondary">
-          Explore
+          Demo
         </Button>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
+        <Button
+          size="small"
+          color="secondary"
+          href={props.repoUrl}
+          target={'_blank'}
         >
-          <CodeIcon />
-        </IconButton>
+          Code
+        </Button>
       </CardActions>
     </Card>
   );

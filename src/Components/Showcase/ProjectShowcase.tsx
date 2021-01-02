@@ -1,44 +1,20 @@
-import {Container, Grid} from '@material-ui/core';
+import {gql, useQuery} from '@apollo/client';
+import {CircularProgress, Grid} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Alert from '@material-ui/lab/Alert';
 import * as React from 'react';
 import ProjectCard, {ProjectInterface} from './ProjectCard';
 
-const projects: ProjectInterface[] = [
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-  {
-    title: 'Project Title',
-    description: 'This is a long description of the project',
-    codeUrl: 'URL',
-  },
-];
+const PROJECTS = gql`
+  query {
+    repos {
+      description
+      name
+      language
+      repoUrl
+    }
+  }
+`;
 
 function createProjectCardGrid(projects: ProjectInterface[]): JSX.Element[] {
   const MAX_GRID_ITEM = 3;
@@ -55,19 +31,27 @@ function createProjectCardGrid(projects: ProjectInterface[]): JSX.Element[] {
   while (res.length) {
     out.push(
       <Grid container item xs={12} spacing={3} key={keyCounter}>
-        {res.splice(0, MAX_GRID_ITEM)};
+        {res.splice(0, MAX_GRID_ITEM)}
       </Grid>
     );
     keyCounter += 1;
   }
   return out;
 }
+
 export default function ProjectShowcase(): JSX.Element {
+  const {loading, error, data} = useQuery(PROJECTS);
+  if (loading) return <CircularProgress />;
+  if (error) return <Alert severity="error">Failed to fetch projects</Alert>;
+  console.log(data.repos);
   return (
-    <Container maxWidth={'lg'}>
+    <div>
+      <Typography gutterBottom color={'secondary'} variant="h3" component="h4">
+        Projects
+      </Typography>
       <Grid container spacing={1}>
-        <React.Fragment>{createProjectCardGrid(projects)}</React.Fragment>
+        <React.Fragment>{createProjectCardGrid(data.repos)}</React.Fragment>
       </Grid>
-    </Container>
+    </div>
   );
 }
