@@ -11,5 +11,13 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "rules": {
+        "react/react-in-jsx-scope": 0
+      },
+      "files": ["src/**/*.test.tsx"]
+    }
+  ]
 }
