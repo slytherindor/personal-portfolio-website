@@ -1,11 +1,12 @@
 import {gql, useQuery} from '@apollo/client';
-import {CircularProgress, Grid} from '@material-ui/core';
+import {CircularProgress, createStyles, Grid} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import * as React from 'react';
 import ProjectCard, {ProjectInterface} from './ProjectCard';
 
-const PROJECTS = gql`
+export const PROJECTS_QUERY = gql`
   query {
     repos {
       description
@@ -39,14 +40,31 @@ function createProjectCardGrid(projects: ProjectInterface[]): JSX.Element[] {
   return out;
 }
 
+const useStyles = makeStyles(theme =>
+  createStyles({
+    heading: {
+      color: theme.palette.primary.contrastText,
+    },
+  })
+);
+
 export default function ProjectShowcase(): JSX.Element {
-  const {loading, error, data} = useQuery(PROJECTS);
+  const classes = useStyles();
+  const {loading, error, data} = useQuery(PROJECTS_QUERY);
   if (loading) return <CircularProgress />;
+  /*
+   * error is an object type here with ApolloError, networkError, graphQLErrors keys
+   * Display message based on keys in future
+   * */
   if (error) return <Alert severity="error">Failed to fetch projects</Alert>;
-  console.log(data.repos);
   return (
     <div>
-      <Typography gutterBottom color={'secondary'} variant="h3" component="h4">
+      <Typography
+        gutterBottom
+        className={classes.heading}
+        variant="h3"
+        component="h4"
+      >
         Projects
       </Typography>
       <Grid container spacing={1}>

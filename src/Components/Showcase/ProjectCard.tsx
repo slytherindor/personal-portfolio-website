@@ -9,14 +9,6 @@ export interface ProjectInterface {
   repoUrl: string;
   language: string;
 }
-// const useStyles = makeStyles(theme =>
-//   createStyles({
-//     menuButton: {
-//       marginRight: theme.spacing(2),
-//       color: theme.palette.primary.contrastText,
-//     },
-//   })
-// );
 
 export default function ProjectCard(props: ProjectInterface): JSX.Element {
   return (
@@ -27,13 +19,19 @@ export default function ProjectCard(props: ProjectInterface): JSX.Element {
         </Typography>
         <Typography
           gutterBottom
+          role={'paragraph'}
           variant="body1"
           color="textSecondary"
           component="p"
         >
           {props.description}
         </Typography>
-        <Typography variant="subtitle1" color="textSecondary" component="p">
+        <Typography
+          role={'paragraph'}
+          variant="subtitle1"
+          color="textSecondary"
+          component="p"
+        >
           Language: {props.language}
         </Typography>
       </CardContent>

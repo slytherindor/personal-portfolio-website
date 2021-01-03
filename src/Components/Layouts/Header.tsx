@@ -44,14 +44,14 @@ export default function ButtonAppBar(): JSX.Element {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title}>
+            <Typography className={classes.title} variant={'h4'}>
               {GeneralConstants.APP_NAME}
             </Typography>
             <IconButton
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              aria-label="menu"
+              aria-label="github"
               href={'https://github.com/slytherindor'}
               target={'_blank'}
             >
@@ -61,15 +61,12 @@ export default function ButtonAppBar(): JSX.Element {
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              aria-label="menu"
+              aria-label="linkedin"
               href={'https://linkedin.com/in/shubhaarsay'}
               target={'_blank'}
             >
               <LinkedInIcon />
             </IconButton>
-            <Typography color="inherit">
-              {GeneralConstants.OWNER_NAME.toUpperCase()}
-            </Typography>
           </Toolbar>
         </AppBar>
       </Box>
