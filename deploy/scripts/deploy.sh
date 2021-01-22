@@ -15,6 +15,4 @@ else
 fi
 echo "Uploading build to S3 bucket ${BUCKET_NAME}"
 aws s3 cp --recursive build s3://${BUCKET_NAME}/base-web-client/build
-EXIT_CODE=$?
-echo "Finished uploading build"
-exit ${EXIT_CODE}
+exit $?
