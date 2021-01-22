@@ -22,8 +22,7 @@ script:
 deploy:
   provider: script
   script:
-    - bash deploy/scripts/create-bucket.sh
-    - aws s3 cp --recursive build ${BUCKET_NAME}/base-web-client/build
+    - bash deploy/scripts/deploy.sh
   on:
     branch: main
 
