@@ -13,7 +13,8 @@ else
     exit 1
     fi
 fi
-
+echo "Listing directory"
+ls
 echo "Uploading build to S3 bucket ${BUCKET_NAME}"
 aws s3 cp --recursive build ${BUCKET_NAME}/base-web-client/build
 echo "Finished uploading build"
