@@ -6,7 +6,7 @@ node_js:
 cache:
   directories:
   - node_modules
-before_install:
+before_deploy:
 - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 - unzip awscliv2.zip
 - sudo ./aws/install
@@ -15,22 +15,15 @@ before_install:
 - sudo apt-get install jq
 install:
 - npm install
-jobs:
-  include:
-    - stage: "lint"
-      name: "Lint"
-      script: npm run lint
-    - stage: "test"
-      name: "Test"
-      script: npm run test
-    - stage: "build"
-      name: "Build"
-      script: npm run build
-    - stage: "store"
-      name: "Store in S3"
-      script:
-      - bash deploy/scripts/create-bucket.sh
-      - aws s3 cp --recursive build ${BUCKET_NAME}/base-web-client/build
+script:
+  - npm run lint
+  - npm run test
+  - npm run build
+deploy:
+  script:
+    - bash deploy/scripts/create-bucket.sh
+    - aws s3 cp --recursive build ${BUCKET_NAME}/base-web-client/build
+
 env:
   global:
   - BUCKET_NAME=shubh-react-apps
