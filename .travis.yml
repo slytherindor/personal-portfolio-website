@@ -28,10 +28,10 @@ jobs:
       name: 'store in S3'
       script:
         - bash deploy/scripts/create-bucket.sh
-        - aws s3api cp build base-web-client/build
+        - aws s3api cp --recursive build ${BUCKET_NAME}/base-web-client/build
 env:
   global:
-    - BUCKET_NAME=base-web-client
+    - BUCKET_NAME=shubh-react-apps
 matrix:
   fast_finish: true
 
