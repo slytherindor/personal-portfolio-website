@@ -1,53 +1,26 @@
-import {Button, Card, CardActions} from '@material-ui/core';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import * as React from 'react';
+import {Button, Card, CardBody, CardFooter, CardHeader, Heading} from 'grommet';
+import {Code, Favorite, Launch} from 'grommet-icons';
+import React from 'react';
 
-export interface ProjectInterface {
-  name: string;
+export interface IProjectCardProps {
+  title: string;
   description: string;
-  repoUrl: string;
   language: string;
 }
-
-export default function ProjectCard(props: ProjectInterface): JSX.Element {
+export default function ProjectCard(props: IProjectCardProps): JSX.Element {
   return (
-    <Card variant={'outlined'}>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {props.name}
-        </Typography>
-        <Typography
-          gutterBottom
-          role={'paragraph'}
-          variant="body1"
-          color="textSecondary"
-          component="p"
-        >
-          {props.description}
-        </Typography>
-        <Typography
-          role={'paragraph'}
-          variant="subtitle1"
-          color="textSecondary"
-          component="p"
-        >
-          Language: {props.language}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" color="secondary">
+    <Card height="medium" width="medium" background={'light-1'}>
+      <CardHeader pad="medium">
+        <Heading level={4}>{props.title}</Heading>
+      </CardHeader>
+      <CardBody pad="medium">{props.description}</CardBody>
+      <CardFooter pad={{horizontal: 'small'}} background="light-2">
+        <Button icon={<Favorite color="plain" />} hoverIndicator>
           Demo
         </Button>
-        <Button
-          size="small"
-          color="secondary"
-          href={props.repoUrl}
-          target={'_blank'}
-        >
-          Code
-        </Button>
-      </CardActions>
+        <Button icon={<Code color="plain" />} hoverIndicator />
+        <Button icon={<Launch color="plain" />} hoverIndicator />
+      </CardFooter>
     </Card>
   );
 }

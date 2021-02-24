@@ -1,31 +1,23 @@
 import {ApolloProvider} from '@apollo/client';
-import {
-  Container,
-  createMuiTheme,
-  CssBaseline,
-  MuiThemeProvider,
-} from '@material-ui/core';
-import * as React from 'react';
-import Homepage from './Components/Homepage/Homepage';
-import ButtonAppBar from './Components/Layouts/Header';
-import ProjectShowcase from './Components/Showcase/ProjectShowcase';
+import {Grommet, Main} from 'grommet';
+import React from 'react';
+import Introduction from './Components/Homepage/Introduction';
+import Navbar from './Components/Layouts/Navbar';
+import {ProjectShowcase} from './Components/Showcase/ProjectShowcase';
 import {client} from './graphql/client';
-import palette from './Themes/default_palette.json';
-export const theme = createMuiTheme(palette);
-function App(): JSX.Element {
+
+export default function App(): JSX.Element {
   return (
-    <MuiThemeProvider theme={theme}>
-      <React.Fragment>
-        <CssBaseline />
+    <React.Fragment>
+      <Grommet plain>
         <ApolloProvider client={client}>
-          <ButtonAppBar />
-          <Container maxWidth={'lg'}>
-            <Homepage />
+          <Navbar />
+          <Main pad="large" align={'center'} fill={'vertical'}>
+            <Introduction />
             <ProjectShowcase />
-          </Container>
+          </Main>
         </ApolloProvider>
-      </React.Fragment>
-    </MuiThemeProvider>
+      </Grommet>
+    </React.Fragment>
   );
 }
-export default App;

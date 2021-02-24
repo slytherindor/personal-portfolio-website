@@ -1,8 +1,10 @@
 export class GeneralConstants {
-  static APP_NAME = 'Fiddl';
+  static APP_NAME = 'SHBH';
   static ABOUT_ME = 'About me';
   static OWNER_FIRST_NAME = 'Shubhanshu';
   static OWNER_LAST_NAME = 'Aarsay';
+  static GITHUB_URL = 'https://github.com/slytherindor';
+  static LINKEDIN_URL = 'https://linkedin.com/in/shubhaarsay';
   static INTRO_PART_1 = `
   I am a software developer based in Ottawa, Canada. Being a techie and
   an immigrant has shaped my world view. My interests range from science
