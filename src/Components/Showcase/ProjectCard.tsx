@@ -20,10 +20,14 @@ export default function ProjectCard(props: IProjectCardProps): JSX.Element {
   return (
     <Card height="medium" width="medium" pad={'small'} background={'light-1'}>
       <CardHeader pad="small" a11yTitle={'cardHeader'}>
-        <Heading level={4}>{props.name}</Heading>
+        <Heading level={4} color={'brand'}>
+          {props.name}
+        </Heading>
       </CardHeader>
       <CardBody a11yTitle={'cardBody'}>
-        <Text>{props.description}</Text>
+        <Text color={'dark-2'} alignSelf={'start'} style={{lineHeight: '1.70'}}>
+          {props.description}
+        </Text>
       </CardBody>
       <CardFooter
         pad={{horizontal: 'small'}}
@@ -31,7 +35,13 @@ export default function ProjectCard(props: IProjectCardProps): JSX.Element {
         align={'center'}
         a11yTitle={'cardFooter'}
       >
-        <Text weight={'normal'}>Language: {props.language}</Text>
+        {props.language ? (
+          <Text weight={'normal'} color={'dark-1'}>
+            Language: {props.language}
+          </Text>
+        ) : (
+          ''
+        )}
         <Button
           a11yTitle={'repoUrlButton'}
           href={props.repoUrl}

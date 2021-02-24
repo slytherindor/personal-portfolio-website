@@ -37,6 +37,7 @@ function createProjectCardGrid(projects: IProjectCardProps[]): JSX.Element[] {
         responsive={true}
         fill={'horizontal'}
         align={'center'}
+        margin={{top: 'large', bottom: 'medium'}}
       >
         {res.splice(0, MAX_GRID_ITEM)}
       </Grid>
@@ -56,7 +57,7 @@ export function ProjectShowcase(): JSX.Element {
   if (error)
     return <AlertBox severity={'error'}>Failed to fetch projects</AlertBox>;
   return (
-    <Box flex={'grow'} fill={'horizontal'}>
+    <Box flex={'grow'} fill={'horizontal'} animation={'fadeIn'}>
       <Heading level={2} color={'dark-1'}>
         Projects
       </Heading>

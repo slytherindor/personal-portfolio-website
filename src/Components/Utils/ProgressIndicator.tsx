@@ -9,8 +9,9 @@ export function ProgressIndicator(): JSX.Element {
       justify="center"
       animation={'rotateRight'}
       a11yTitle={'progressIndicator'}
+      pad={'medium'}
     >
-      <RotateRight />
+      <RotateRight color={'brand'} size={'large'} />
     </Box>
   );
 }

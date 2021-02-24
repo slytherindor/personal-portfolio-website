@@ -22,7 +22,9 @@ export default function Navbar(props: INavbarProps): JSX.Element {
       pad={'large'}
     >
       <Text color={'accent-1'} weight={'bold'}>
-        {GeneralConstants.APP_NAME}
+        {GeneralConstants.OWNER_FIRST_NAME.toLocaleUpperCase() +
+          ' ' +
+          GeneralConstants.OWNER_LAST_NAME.toLocaleUpperCase()}
       </Text>
       <Box direction={'row'} gap={'medium'}>
         <Anchor
