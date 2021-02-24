@@ -13,7 +13,7 @@ export class GeneralConstants {
   static INTRO_PART_2 = `  
   As an  avid programmer, I keep exploring new ideas and writing code. I start numerous
   projects but I never get the chance to complete any -- or that is what
-  I what you to think because I am working on next big thing in private
+  I want you to think because I am working on next big thing in private
   repos.
   `;
 }
