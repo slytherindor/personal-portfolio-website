@@ -2,10 +2,16 @@ import {render, screen} from '@testing-library/react';
 import {GeneralConstants} from '../../LocaleConstants/en/GeneralConstants';
 import Navbar from './Navbar';
 
-it('renders correct app name', () => {
+it('renders correct owner name on navbar', () => {
   // eslint-disable-next-line react/react-in-jsx-scope
   render(<Navbar />);
-  expect(screen.getByText(GeneralConstants.APP_NAME)).toBeInTheDocument();
+  expect(
+    screen.getByText(
+      GeneralConstants.OWNER_FIRST_NAME.toLocaleUpperCase() +
+        ' ' +
+        GeneralConstants.OWNER_LAST_NAME.toLocaleUpperCase()
+    )
+  ).toBeInTheDocument();
 });
 
 it('renders correct external links', () => {
