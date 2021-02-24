@@ -1,7 +1,8 @@
 import {gql, useQuery} from '@apollo/client';
-import {Box, Grid, Heading, Text} from 'grommet';
-import {RotateRight} from 'grommet-icons';
+import {Box, Grid, Heading} from 'grommet';
 import React from 'react';
+import {AlertBox} from '../Utils/AlertBox';
+import {ProgressIndicator} from '../Utils/ProgressIndicator';
 import ProjectCard, {IProjectCardProps} from './ProjectCard';
 
 export const PROJECTS_QUERY = gql`
@@ -20,33 +21,29 @@ function createProjectCardGrid(projects: IProjectCardProps[]): JSX.Element[] {
 
   const res = projects.map((project, index) => {
     return (
-      <Grid key={index}>
+      <Box gap={'medium'} key={index} responsive={true}>
         <ProjectCard {...project} />
-      </Grid>
+      </Box>
     );
   });
   const out = [];
   let keyCounter = 0;
   while (res.length) {
-    out.push(<Grid key={keyCounter}>{res.splice(0, MAX_GRID_ITEM)}</Grid>);
+    out.push(
+      <Grid
+        columns={'medium'}
+        gap={'medium'}
+        key={keyCounter}
+        responsive={true}
+        fill={'horizontal'}
+        align={'center'}
+      >
+        {res.splice(0, MAX_GRID_ITEM)}
+      </Grid>
+    );
     keyCounter += 1;
   }
   return out;
-}
-export function ProgressIndicator(): JSX.Element {
-  return (
-    <Box align="center" justify="center" animation={'rotateRight'}>
-      <RotateRight />
-    </Box>
-  );
-}
-
-export function Alert(props: any): JSX.Element {
-  return (
-    <Box background={'green'}>
-      <Text color={'red'}>{props.children}</Text>;
-    </Box>
-  );
 }
 
 export function ProjectShowcase(): JSX.Element {
@@ -56,18 +53,14 @@ export function ProjectShowcase(): JSX.Element {
    * error is an object type here with ApolloError, networkError, graphQLErrors keys
    * Display message based on keys in future
    * */
-  if (error) return <Alert>This is text</Alert>;
+  if (error)
+    return <AlertBox severity={'error'}>Failed to fetch projects</AlertBox>;
   return (
-    <div>
-      <ProgressIndicator />
-      <Heading level={2} color={'accent-1'}>
+    <Box flex={'grow'} fill={'horizontal'}>
+      <Heading level={2} color={'dark-1'}>
         Projects
       </Heading>
-      <ProjectCard
-        title={'Base Server'}
-        description={'Template for creating more projects'}
-        language={'Typescript'}
-      />
-    </div>
+      <Box>{createProjectCardGrid(data.repos)}</Box>
+    </Box>
   );
 }

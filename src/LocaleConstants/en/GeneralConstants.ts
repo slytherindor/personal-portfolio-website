@@ -11,7 +11,7 @@ export class GeneralConstants {
   & technology to politics and ethics. I am a F1 fan, so you can talk to
   me about motorsports and cars in general.`;
   static INTRO_PART_2 = `  
-  An avid programmer, I keep exploring new ideas and never stop writing code. I start numerous
+  As an  avid programmer, I keep exploring new ideas and never stop writing code. I start numerous
   projects but I never get the chance to complete any -- or that is what
   I what you to think because I am working on next big thing in private
   repos.

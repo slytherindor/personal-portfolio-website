@@ -4,12 +4,12 @@ import {GeneralConstants} from '../../LocaleConstants/en/GeneralConstants';
 
 export default function Introduction(): JSX.Element {
   return (
-    <Box>
+    <Box responsive={true}>
       <Heading color={'accent-1'}>Hey there!</Heading>
-      <Paragraph responsive={true} size={'medium'}>
+      <Paragraph responsive={true} size={'medium'} fill={true} color={'dark-2'}>
         {GeneralConstants.INTRO_PART_1}
       </Paragraph>
-      <Paragraph responsive={true} size={'medium'}>
+      <Paragraph responsive={true} size={'medium'} fill={true} color={'dark-2'}>
         {GeneralConstants.INTRO_PART_2}
       </Paragraph>
     </Box>

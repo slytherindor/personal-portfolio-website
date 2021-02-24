@@ -3,7 +3,12 @@ import {Github, Linkedin, Moon} from 'grommet-icons';
 import * as React from 'react';
 import {GeneralConstants} from '../../LocaleConstants/en/GeneralConstants';
 
-export default function Navbar(): JSX.Element {
+export interface INavbarProps {
+  darkModeToggle?: Function;
+  darkMode?: boolean;
+}
+
+export default function Navbar(props: INavbarProps): JSX.Element {
   return (
     <Header
       tag={'header'}
@@ -24,15 +29,24 @@ export default function Navbar(): JSX.Element {
           href={GeneralConstants.GITHUB_URL}
           target={'_blank'}
           alignSelf={'end'}
+          a11yTitle="github"
           icon={<Github />}
         />
         <Anchor
           href={GeneralConstants.LINKEDIN_URL}
           target={'_blank'}
           alignSelf={'end'}
+          a11yTitle="linkedin"
           icon={<Linkedin />}
         />
-        <Anchor reverse={true} alignSelf={'end'} icon={<Moon />} />
+        <Anchor
+          reverse={true}
+          alignSelf={'end'}
+          onClick={() => {
+            props.darkModeToggle ? props.darkModeToggle(!props.darkMode) : null;
+          }}
+          icon={<Moon color={props.darkMode ? 'white' : 'accent-1'} />}
+        />
       </Box>
     </Header>
   );

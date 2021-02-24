@@ -1,24 +1,44 @@
-import {Button, Card, CardBody, CardFooter, CardHeader, Heading} from 'grommet';
-import {Code, Favorite, Launch} from 'grommet-icons';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Text,
+} from 'grommet';
+import {Code, Launch} from 'grommet-icons';
 import React from 'react';
 
 export interface IProjectCardProps {
-  title: string;
+  name: string;
   description: string;
   language: string;
+  repoUrl: string;
 }
 export default function ProjectCard(props: IProjectCardProps): JSX.Element {
   return (
-    <Card height="medium" width="medium" background={'light-1'}>
-      <CardHeader pad="medium">
-        <Heading level={4}>{props.title}</Heading>
+    <Card height="medium" width="medium" pad={'small'} background={'light-1'}>
+      <CardHeader pad="small" a11yTitle={'cardHeader'}>
+        <Heading level={4}>{props.name}</Heading>
       </CardHeader>
-      <CardBody pad="medium">{props.description}</CardBody>
-      <CardFooter pad={{horizontal: 'small'}} background="light-2">
-        <Button icon={<Favorite color="plain" />} hoverIndicator>
-          Demo
-        </Button>
-        <Button icon={<Code color="plain" />} hoverIndicator />
+      <CardBody a11yTitle={'cardBody'}>
+        <Text>{props.description}</Text>
+      </CardBody>
+      <CardFooter
+        pad={{horizontal: 'small'}}
+        background={'light-2'}
+        align={'center'}
+        a11yTitle={'cardFooter'}
+      >
+        <Text weight={'normal'}>Language: {props.language}</Text>
+        <Button
+          a11yTitle={'repoUrlButton'}
+          href={props.repoUrl}
+          target={'_blank'}
+          icon={<Code color="plain" />}
+          hoverIndicator
+        />
         <Button icon={<Launch color="plain" />} hoverIndicator />
       </CardFooter>
     </Card>
